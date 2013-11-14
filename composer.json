@@ -1,0 +1,27 @@
+{
+    "name": "jac/payment-stripe-bundle",
+    "type": "symfony-bundle",
+    "description": "Payment Bundle providing access to the Stripe API",
+    "keywords": ["payment", "stripe"],
+    "homepage": "https://github.com/johnathancurry/JACPaymentStripeBundle",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "Johnathan A. Curry",
+            "email": "source@johnathancurry.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.0",
+        "jms/payment-core-bundle": "~1.0",
+        "stripe / stripe-php": "~1.9"
+    },
+    "require-dev": {
+        "symfony/browser-kit": "*"
+    },
+    "autoload": {
+        "psr-0": { "JAC\\Payment\\StripeBundle": "" }
+    },
+    "target-dir": "JAC/Payment/StripeBundle"
+}
