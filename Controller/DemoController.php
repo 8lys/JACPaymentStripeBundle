@@ -7,7 +7,6 @@ use JMS\Payment\CoreBundle\Entity\Payment;
 use JMS\Payment\CoreBundle\PluginController\Result;
 use JMS\Payment\CoreBundle\Plugin\Exception\ActionRequiredException;
 use JMS\Payment\CoreBundle\Plugin\Exception\Action\VisitUrl;
-use Sellium\Bundle\PaymentBundle\Entity\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -81,7 +80,7 @@ class DemoController extends Controller
     /**
      * @Route("/{orderNumber}/complete", name = "payment_complete")
      */
-    public function completeAction(Order $order)
+    public function completeAction(DemoOrder $order)
     {
         $instruction = $order->getPaymentInstruction();
         if (null === $pendingTransaction = $instruction->getPendingTransaction()) {
@@ -113,6 +112,6 @@ class DemoController extends Controller
     /**
      * @Route("/{orderNumber}/cancel", name = "payment_cancel")
      */
-    public function cancelAction(Order $order)
+    public function cancelAction(DemoOrder $order)
     {}
 }
