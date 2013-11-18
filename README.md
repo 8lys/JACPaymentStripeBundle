@@ -14,3 +14,4 @@ The demo files are:
 * Controller/DemoController.php
 * Entity/DemoOrder.php
 * Resources/views/Demo/details.html.twig
+* Resources/views/Demo/complete.html.twig

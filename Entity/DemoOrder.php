@@ -23,10 +23,13 @@ class DemoOrder
     /** @ORM\Column(type="string", unique = true) */
     private $orderNumber;
 
-    /** @ORM\Column(type="decimal", precision = 2) */
+    /**
+     * Order amount due in cents
+     *
+     * @ORM\Column(type="integer")
+     */
     private $amount;
 
-    // ...
 
     public function __construct($amount, $orderNumber)
     {

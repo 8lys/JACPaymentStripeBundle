@@ -1,0 +1,40 @@
+{#{% block stripe_widget %}#}
+    {#{% spaceless %}#}
+        {% block widget_attributes %}
+            {% spaceless %}
+                id="{{ id }}"
+
+                {# Overriding widget_attributes to remove the name attribute for
+                card data fields. Removing the name attribute prevents these
+                fields from being sent to the server. This is a necessary measure
+                in addition to using stripe.js for eliminating PCI compliance
+                responsibilities.
+
+                If you are running a setup where you need the raw card data
+                simply delete the widget_atributes block from this file. #}
+                {%- if full_name not in [
+                    'jms_choose_payment_method[data_stripe][number]',
+                    'jms_choose_payment_method[data_stripe][exp_month]',
+                    'jms_choose_payment_method[data_stripe][exp_year]'
+                ] %} name="{{ full_name }}"{% endif -%}
+
+                {%- if read_only %} readonly="readonly"{% endif -%}
+                {%- if disabled %} disabled="disabled"{% endif -%}
+                {%- if required %} required="required"{% endif -%}
+                {%- if max_length %} maxlength="{{ max_length }}"{% endif -%}
+                {%- if pattern %} pattern="{{ pattern }}"{% endif -%}
+                {%- for attrname, attrvalue in attr -%}
+                    {{- " " -}}
+                    {%- if attrname in ['placeholder', 'title'] -%}
+                        {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+                    {%- elseif attrvalue is sameas(true) -%}
+                        {{- attrname }}="{{ attrname }}"
+                    {%- elseif attrvalue is not sameas(false) -%}
+                        {{- attrname }}="{{ attrvalue }}"
+                    {%- endif -%}
+                {%- endfor -%}
+            {% endspaceless %}
+        {% endblock widget_attributes %}
+
+    {#{% endspaceless %}#}
+{#{% endblock %}#}

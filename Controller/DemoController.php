@@ -79,6 +79,7 @@ class DemoController extends Controller
 
     /**
      * @Route("/{orderNumber}/complete", name = "payment_complete")
+     * @Template
      */
     public function completeAction(DemoOrder $order)
     {
@@ -107,6 +108,8 @@ class DemoController extends Controller
         }
 
         // payment was successful, do something interesting with the order
+
+        return array();
     }
 
     /**
