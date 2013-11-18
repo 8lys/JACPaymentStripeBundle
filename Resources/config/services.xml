@@ -3,4 +3,37 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="payment.plugin.stripe.class">JAC\Payment\StripeBundle\Plugin\StripePlugin</parameter>
+        <parameter key="payment.stripe.client.class">JAC\Payment\StripeBundle\Client\Client</parameter>
+        <parameter key="payment.stripe.authentication_strategy.token.class">JAC\Payment\StripeBundle\Client\Authentication\TokenAuthenticationStrategy</parameter>
+        <parameter key="payment.form.stripe_type.class">JAC\Payment\StripeBundle\Form\StripeType</parameter>
+        <parameter key="payment.stripe.api_key"></parameter>
+        <parameter key="payment.stripe.debug"></parameter>
+    </parameters>
+
+    <services>
+        <service id="payment.stripe.authentication_strategy.token" class="%payment.stripe.authentication_strategy.token.class%">
+            <!-- todo: this api_key needs to be fetched from the database per user -->
+            <argument>%payment.stripe.api_key%</argument>
+        </service>
+
+        <service id="payment.stripe.authentication_strategy" alias="payment.stripe.authentication_strategy.token" />
+
+        <service id="payment.stripe.client" class="%payment.stripe.client.class%">
+            <argument type="service" id="payment.stripe.authentication_strategy" />
+            <argument>%payment.stripe.debug%</argument>
+        </service>
+
+        <service id="payment.plugin.stripe" class="%payment.plugin.stripe.class%">
+            <argument type="service" id="payment.stripe.client" />
+            <argument>%payment.stripe.debug%</argument>
+            <tag name="payment.plugin" />
+        </service>
+
+        <service id="payment.form.stripe_type" class="%payment.form.stripe_type.class%">
+            <tag name="payment.method_form_type" />
+            <tag name="form.type" alias="stripe" />
+        </service>
+    </services>
 </container>
