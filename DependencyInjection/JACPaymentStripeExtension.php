@@ -20,6 +20,7 @@ class JACPaymentStripeExtension extends Extension
         $xmlLoader->load('services.xml');
 
         $container->setParameter('payment.stripe.api_key', $config['api_key']);
+        $container->setParameter('payment.stripe.publishable_key', $config['publishable_key']);
         $container->setParameter('payment.stripe.debug', $config['debug']);
     }
 }

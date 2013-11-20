@@ -8,7 +8,9 @@
         <parameter key="payment.stripe.client.class">JAC\Payment\StripeBundle\Client\Client</parameter>
         <parameter key="payment.stripe.authentication_strategy.token.class">JAC\Payment\StripeBundle\Client\Authentication\TokenAuthenticationStrategy</parameter>
         <parameter key="payment.form.stripe_type.class">JAC\Payment\StripeBundle\Form\StripeType</parameter>
+        <parameter key="payment.twig.stripe_extension.class">JAC\Payment\StripeBundle\Twig\PaymentStripeExtension</parameter>
         <parameter key="payment.stripe.api_key"></parameter>
+        <parameter key="payment.stripe.publishable_key"></parameter>
         <parameter key="payment.stripe.debug"></parameter>
     </parameters>
 
@@ -34,6 +36,11 @@
         <service id="payment.form.stripe_type" class="%payment.form.stripe_type.class%">
             <tag name="payment.method_form_type" />
             <tag name="form.type" alias="stripe" />
+        </service>
+
+        <service id="payment.twig.stripe_extension" class="%payment.twig.stripe_extension.class%">
+            <argument>%payment.stripe.publishable_key%</argument>
+            <tag name="twig.extension"></tag>
         </service>
     </services>
 </container>

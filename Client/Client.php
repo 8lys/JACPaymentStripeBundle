@@ -20,53 +20,30 @@ Class Client
         $this->authenticationStrategy = $authenticationStrategy;
         $this->isDebug = !!$isDebug;
 
+        $this->authenticationStrategy->authenticate();
         \Stripe::setApiVersion(self::API_VERSION);
     }
 
-    /**
-     * @param $amount
-     * @param $currency
-     * @param null $customer
-     * @param null $card
-     * @param array $optionalParameters
-     * @return array
-     */
-    public function charge($amount, $currency, $customer = null, $card = null, array $optionalParameters = array())
+    public function authorize(array $parameters)
     {
-        return $this->chargeCreate(array_merge($optionalParameters, array(
-            'amount' => $amount,
-            'currency' => $currency,
-            'customer' => $customer,
-            'card' => $card
-        )));
-    }
-
-    /**
-     * @param $amount
-     * @param $currency
-     * @param null $customer
-     * @param null $card
-     * @param array $optionalParameters
-     * @return array
-     */
-    public function authorize($amount, $currency, $customer = null, $card = null, array $optionalParameters = array())
-    {
-        return $this->chargeCreate(array_merge($optionalParameters, array(
-            'amount' => $amount,
-            'currency' => $currency,
-            'customer' => $customer,
-            'card' => $card,
-            'capture' => false
-        )));
-    }
-
-    /**
-     * @param array $parameters
-     * @return array
-     */
-    public function chargeCreate(array $parameters)
-    {
-        $this->authenticationStrategy->authenticate();
         return \Stripe_Charge::create($parameters);
     }
+
+    public function capture(array $parameters)
+    {
+        $charge = Stripe_Charge::retrieve($parameters['charge_id']);
+        return $charge->capture();
+    }
+
+    public function charge(array $parameters)
+    {
+        return \Stripe_Charge::create($parameters);
+    }
+
+    public function credit(array $parameters)
+    {
+        $charge = Stripe_Charge::retrieve($parameters['charge_id']);
+        return $charge->refund();
+    }
+
 }
