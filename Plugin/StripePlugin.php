@@ -92,7 +92,7 @@ Class StripePlugin extends AbstractPlugin
             $transaction->setProcessedAmount($response->amount);
             $transaction->setResponseCode(PluginInterface::RESPONSE_CODE_SUCCESS);
             $transaction->setReasonCode(PluginInterface::REASON_CODE_SUCCESS);
-        } catch(\Stripe_CardError $e) {
+        } catch (\Stripe_CardError $e) {
             $body = $e->getJsonBody();
             $error  = $body['error'];
 

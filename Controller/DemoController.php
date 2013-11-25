@@ -103,12 +103,11 @@ class DemoController extends Controller
 
                 throw $ex;
             }
-        } else if (Result::STATUS_SUCCESS !== $result->getStatus()) {
+        } elseif (Result::STATUS_SUCCESS !== $result->getStatus()) {
             throw new \RuntimeException('Transaction was not successful: '.$result->getReasonCode());
         }
 
         // payment was successful, do something interesting with the order
-
         return array();
     }
 

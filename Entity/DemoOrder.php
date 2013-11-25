@@ -15,7 +15,7 @@ class DemoOrder
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected  $id;
+    protected $id;
 
     /** @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction") */
     private $paymentInstruction;
@@ -29,7 +29,6 @@ class DemoOrder
      * @ORM\Column(type="integer")
      */
     private $amount;
-
 
     public function __construct($amount, $orderNumber)
     {
@@ -62,26 +61,26 @@ class DemoOrder
     /**
      * Set orderNumber
      *
-     * @param string $orderNumber
+     * @param  string $orderNumber
      * @return Order
      */
     public function setOrderNumber($orderNumber)
     {
         $this->orderNumber = $orderNumber;
-    
+
         return $this;
     }
 
     /**
      * Set amount
      *
-     * @param float $amount
+     * @param  float $amount
      * @return Order
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
-    
+
         return $this;
     }
 }

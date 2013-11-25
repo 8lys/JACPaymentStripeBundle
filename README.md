@@ -1,5 +1,6 @@
 JACPaymentStripeBundle
 ======================
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/johnathancurry/JACPaymentStripeBundle/badges/quality-score.png?s=d41b084d600475c1dd84a8d48308a48399e6c837)](https://scrutinizer-ci.com/g/johnathancurry/JACPaymentStripeBundle/)
 
 Stripe payments for JMSPaymentCoreBundle
 

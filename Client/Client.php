@@ -32,6 +32,7 @@ Class Client
     public function capture(array $parameters)
     {
         $charge = Stripe_Charge::retrieve($parameters['charge_id']);
+
         return $charge->capture();
     }
 
@@ -43,6 +44,7 @@ Class Client
     public function credit(array $parameters)
     {
         $charge = Stripe_Charge::retrieve($parameters['charge_id']);
+
         return $charge->refund();
     }
 
