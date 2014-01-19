@@ -13,7 +13,7 @@ class Configuration
         return $tb
             ->root('jac_payment_stripe', 'array')
                 ->children()
-                    ->scalarNode('api_key')->defaultValue('sk_test_mkGsLqEW6SLnZa487HYfJVLf')->end()
+                    ->scalarNode('secret_key')->defaultValue('sk_test_mkGsLqEW6SLnZa487HYfJVLf')->end()
                     ->scalarNode('publishable_key')->defaultValue('pk_test_czwzkTp2tactuLOEOqbMTRzG')->end()
                     ->booleanNode('debug')->defaultValue('%kernel.debug%')->end()
                 ->end()

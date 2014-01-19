@@ -4,16 +4,16 @@ namespace JAC\Payment\StripeBundle\Client\Authentication;
 
 Class TokenAuthenticationStrategy implements AuthenticationStrategyInterface
 {
-    protected $apiKey;
+    protected $secretKey;
 
-    public function __construct($apiKey)
+    public function __construct($secretKey)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey = $secretKey;
     }
 
     public function authenticate()
     {
-        \Stripe::setApiKey($this->apiKey);
+        \Stripe::setApiKey($this->secretKey);
     }
 
     public function getApiEndpoint()

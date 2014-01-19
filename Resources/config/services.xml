@@ -9,15 +9,15 @@
         <parameter key="payment.stripe.authentication_strategy.token.class">JAC\Payment\StripeBundle\Client\Authentication\TokenAuthenticationStrategy</parameter>
         <parameter key="payment.form.stripe_type.class">JAC\Payment\StripeBundle\Form\StripeType</parameter>
         <parameter key="payment.twig.stripe_extension.class">JAC\Payment\StripeBundle\Twig\PaymentStripeExtension</parameter>
-        <parameter key="payment.stripe.api_key"></parameter>
-        <parameter key="payment.stripe.publishable_key"></parameter>
-        <parameter key="payment.stripe.debug"></parameter>
+        <parameter key="payment.stripe.secret_key" />
+        <parameter key="payment.stripe.publishable_key" />
+        <parameter key="payment.stripe.debug" />
     </parameters>
 
     <services>
         <service id="payment.stripe.authentication_strategy.token" class="%payment.stripe.authentication_strategy.token.class%">
             <!-- todo: this api_key needs to be fetched from the database per user -->
-            <argument>%payment.stripe.api_key%</argument>
+            <argument>%payment.stripe.secret_key%</argument>
         </service>
 
         <service id="payment.stripe.authentication_strategy" alias="payment.stripe.authentication_strategy.token" />
