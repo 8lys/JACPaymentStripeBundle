@@ -31,7 +31,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JAC\Payment\StripeBundle\Client\Client $client
-     * @param bool $isDebug
+     * @param bool                                    $isDebug
      */
     public function __construct(Client $client, $isDebug)
     {
@@ -41,7 +41,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     * @param $retry
+     *                                                                                 @param $retry
      */
     public function approve(FinancialTransactionInterface $transaction, $retry)
     {
@@ -62,7 +62,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     * @param $retry
+     *                                                                                 @param $retry
      */
     public function approveAndDeposit(FinancialTransactionInterface $transaction, $retry)
     {
@@ -90,7 +90,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     * @param bool $retry
+     * @param bool                                                        $retry
      */
     public function credit(FinancialTransactionInterface $transaction, $retry)
     {
@@ -105,7 +105,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     * @param bool $retry
+     * @param bool                                                        $retry
      */
     public function deposit(FinancialTransactionInterface $transaction, $retry)
     {
@@ -119,9 +119,9 @@ class StripePlugin extends AbstractPlugin
     }
 
     /**
-     * @param string $action
-     * @param array $parameters
-     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @param  string                                                             $action
+     * @param  array                                                              $parameters
+     * @param  \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface        $transaction
      * @throws \JMS\Payment\CoreBundle\Plugin\Exception\InvalidDataException
      * @throws \JAC\Payment\StripeBundle\Plugin\Exception\AuthenticationException
      * @throws \JMS\Payment\CoreBundle\Plugin\Exception\FinancialException
@@ -205,7 +205,7 @@ class StripePlugin extends AbstractPlugin
     }
 
     /**
-     * @param string $paymentSystemName
+     * @param  string $paymentSystemName
      * @return bool
      */
     public function processes($paymentSystemName)

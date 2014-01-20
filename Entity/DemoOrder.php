@@ -42,7 +42,6 @@ class DemoOrder
      */
     private $amount;
 
-
     /**
      * @param integer $amount
      * @param integer $orderNumber
@@ -90,7 +89,7 @@ class DemoOrder
     /**
      * Set orderNumber
      *
-     * @param string $orderNumber
+     * @param  string    $orderNumber
      * @return DemoOrder
      */
     public function setOrderNumber($orderNumber)
@@ -103,7 +102,7 @@ class DemoOrder
     /**
      * Set amount
      *
-     * @param float $amount
+     * @param  float     $amount
      * @return DemoOrder
      */
     public function setAmount($amount)
