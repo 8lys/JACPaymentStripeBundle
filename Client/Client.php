@@ -27,7 +27,7 @@ class Client
 
     /**
      * @param Authentication\AuthenticationStrategyInterface $authenticationStrategy
-     * @param $isDebug
+     *                                                                               @param $isDebug
      */
     public function __construct(AuthenticationStrategyInterface $authenticationStrategy, $isDebug)
     {
@@ -39,7 +39,7 @@ class Client
     }
 
     /**
-     * @param array $parameters
+     * @param  array $parameters
      * @return mixed
      */
     public function authorize(array $parameters)
@@ -48,7 +48,7 @@ class Client
     }
 
     /**
-     * @param array $parameters
+     * @param  array $parameters
      * @return mixed
      */
     public function capture(array $parameters)
@@ -59,7 +59,7 @@ class Client
     }
 
     /**
-     * @param array $parameters
+     * @param  array $parameters
      * @return mixed
      */
     public function charge(array $parameters)
@@ -68,7 +68,7 @@ class Client
     }
 
     /**
-     * @param array $parameters
+     * @param  array $parameters
      * @return mixed
      */
     public function credit(array $parameters)
