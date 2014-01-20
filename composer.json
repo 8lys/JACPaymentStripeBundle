@@ -15,7 +15,7 @@
         "php": ">=5.4.19",
         "symfony/framework-bundle": "~2.0",
         "jms/payment-core-bundle": "~1.0",
-        "stripe/stripe-php": "dev-master"
+        "stripe/stripe-php": "~1.10"
     },
     "require-dev": {
         "symfony/browser-kit": "*"
