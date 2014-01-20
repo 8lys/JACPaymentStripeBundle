@@ -27,7 +27,7 @@ class Client
 
     /**
      * @param Authentication\AuthenticationStrategyInterface $authenticationStrategy
-     *                                                                               @param $isDebug
+     * @param bool                                           $isDebug
      */
     public function __construct(AuthenticationStrategyInterface $authenticationStrategy, $isDebug)
     {

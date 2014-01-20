@@ -41,7 +41,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     *                                                                                 @param $retry
+     * @param bool                                                        $retry
      */
     public function approve(FinancialTransactionInterface $transaction, $retry)
     {
@@ -62,7 +62,7 @@ class StripePlugin extends AbstractPlugin
 
     /**
      * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
-     *                                                                                 @param $retry
+     * @param bool                                                        $retry
      */
     public function approveAndDeposit(FinancialTransactionInterface $transaction, $retry)
     {
