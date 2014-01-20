@@ -9,20 +9,40 @@ use JMS\Payment\CoreBundle\Model\PaymentInstructionInterface;
 use JMS\Payment\CoreBundle\Plugin\AbstractPlugin;
 use JMS\Payment\CoreBundle\Plugin\Exception\CommunicationException;
 use JMS\Payment\CoreBundle\Plugin\Exception\FinancialException;
+use JMS\Payment\CoreBundle\Plugin\Exception\InternalErrorException;
 use JMS\Payment\CoreBundle\Plugin\Exception\InvalidDataException;
 use JMS\Payment\CoreBundle\Plugin\PluginInterface;
 
-Class StripePlugin extends AbstractPlugin
+/**
+ * Class StripePlugin
+ * @package JAC\Payment\StripeBundle\Plugin
+ */
+class StripePlugin extends AbstractPlugin
 {
+    /**
+     * @var \JAC\Payment\StripeBundle\Client\Client
+     */
     protected $client;
+
+    /**
+     * @var bool
+     */
     protected $isDebug;
 
+    /**
+     * @param \JAC\Payment\StripeBundle\Client\Client $client
+     * @param bool $isDebug
+     */
     public function __construct(Client $client, $isDebug)
     {
         $this->client = $client;
         $this->isDebug = !!$isDebug;
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @param $retry
+     */
     public function approve(FinancialTransactionInterface $transaction, $retry)
     {
         $data = $transaction->getExtendedData();
@@ -40,6 +60,10 @@ Class StripePlugin extends AbstractPlugin
         );
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @param $retry
+     */
     public function approveAndDeposit(FinancialTransactionInterface $transaction, $retry)
     {
         $data = $transaction->getExtendedData();
@@ -56,11 +80,18 @@ Class StripePlugin extends AbstractPlugin
         );
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Model\PaymentInstructionInterface $paymentInstruction
+     */
     public function checkPaymentInstruction(PaymentInstructionInterface $paymentInstruction)
     {
 
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @param bool $retry
+     */
     public function credit(FinancialTransactionInterface $transaction, $retry)
     {
         $this->doClientRequest(
@@ -72,6 +103,10 @@ Class StripePlugin extends AbstractPlugin
         );
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @param bool $retry
+     */
     public function deposit(FinancialTransactionInterface $transaction, $retry)
     {
         $this->doClientRequest(
@@ -83,6 +118,17 @@ Class StripePlugin extends AbstractPlugin
         );
     }
 
+    /**
+     * @param string $action
+     * @param array $parameters
+     * @param \JMS\Payment\CoreBundle\Model\FinancialTransactionInterface $transaction
+     * @throws \JMS\Payment\CoreBundle\Plugin\Exception\InvalidDataException
+     * @throws \JAC\Payment\StripeBundle\Plugin\Exception\AuthenticationException
+     * @throws \JMS\Payment\CoreBundle\Plugin\Exception\FinancialException
+     * @throws \JMS\Payment\CoreBundle\Plugin\Exception\CommunicationException
+     * @throws \JMS\Payment\CoreBundle\Plugin\Exception\InternalErrorException
+
+     */
     public function doClientRequest($action, array $parameters, FinancialTransactionInterface $transaction)
     {
         try {
@@ -150,6 +196,18 @@ Class StripePlugin extends AbstractPlugin
         }
     }
 
+    /**
+     * @return bool
+     */
+    public function isDebug()
+    {
+        return $this->isDebug;
+    }
+
+    /**
+     * @param string $paymentSystemName
+     * @return bool
+     */
     public function processes($paymentSystemName)
     {
         return 'stripe' === $paymentSystemName;

@@ -11,46 +11,75 @@ use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 class DemoOrder
 {
     /**
+     * @var integer
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
-    /** @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction") */
+    /**
+     * @var \JMS\Payment\CoreBundle\Entity\PaymentInstruction
+     *
+     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction")
+     */
     private $paymentInstruction;
 
-    /** @ORM\Column(type="string", unique = true) */
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", unique = true)
+     */
     private $orderNumber;
 
     /**
      * Order amount due in cents
      *
-     * @ORM\Column(type="integer")
+     * @var float
+     *
+     * @ORM\Column(type="float")
      */
     private $amount;
 
+
+    /**
+     * @param integer $amount
+     * @param integer $orderNumber
+     */
     public function __construct($amount, $orderNumber)
     {
         $this->amount = $amount;
         $this->orderNumber = $orderNumber;
     }
 
+    /**
+     * @return integer
+     */
     public function getOrderNumber()
     {
         return $this->orderNumber;
     }
 
+    /**
+     * @return float
+     */
     public function getAmount()
     {
         return $this->amount;
     }
 
+    /**
+     * @return \JMS\Payment\CoreBundle\Entity\PaymentInstruction
+     */
     public function getPaymentInstruction()
     {
         return $this->paymentInstruction;
     }
 
+    /**
+     * @param \JMS\Payment\CoreBundle\Entity\PaymentInstruction $instruction
+     */
     public function setPaymentInstruction(PaymentInstruction $instruction)
     {
         $this->paymentInstruction = $instruction;
@@ -61,8 +90,8 @@ class DemoOrder
     /**
      * Set orderNumber
      *
-     * @param  string $orderNumber
-     * @return Order
+     * @param string $orderNumber
+     * @return DemoOrder
      */
     public function setOrderNumber($orderNumber)
     {
@@ -74,8 +103,8 @@ class DemoOrder
     /**
      * Set amount
      *
-     * @param  float $amount
-     * @return Order
+     * @param float $amount
+     * @return DemoOrder
      */
     public function setAmount($amount)
     {

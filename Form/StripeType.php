@@ -5,8 +5,16 @@ namespace JAC\Payment\StripeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Class StripeType
+ * @package JAC\Payment\StripeBundle\Form
+ */
 class StripeType extends AbstractType
 {
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('number', 'text', array(
@@ -31,6 +39,9 @@ class StripeType extends AbstractType
         ->add('card_token', 'hidden');
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'stripe';
