@@ -13,7 +13,7 @@ use JAC\Payment\StripeBundle\Client\Authentication\AuthenticationStrategyInterfa
  */
 class Client
 {
-    const API_VERSION = '2013-10-29';
+    const API_VERSION = '2013-12-03';
 
     /**
      * @var Authentication\AuthenticationStrategyInterface
