@@ -18,7 +18,7 @@ class TokenAuthenticationStrategy implements AuthenticationStrategyInterface
      */
     public function __construct($secretKey)
     {
-        $this->apiKey = $secretKey;
+        $this->secretKey = $secretKey;
     }
 
     public function authenticate()

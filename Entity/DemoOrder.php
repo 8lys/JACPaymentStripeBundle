@@ -22,7 +22,7 @@ class DemoOrder
     /**
      * @var \JMS\Payment\CoreBundle\Entity\PaymentInstruction
      *
-     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction")
+     * @ORM\OneToOne(targetEntity="\JMS\Payment\CoreBundle\Entity\PaymentInstruction")
      */
     private $paymentInstruction;
 
@@ -36,9 +36,9 @@ class DemoOrder
     /**
      * Order amount due in cents
      *
-     * @var float
+     * @var integer
      *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $amount;
 
@@ -61,7 +61,7 @@ class DemoOrder
     }
 
     /**
-     * @return float
+     * @return integer
      */
     public function getAmount()
     {
@@ -102,7 +102,7 @@ class DemoOrder
     /**
      * Set amount
      *
-     * @param  float     $amount
+     * @param  integer     $amount
      * @return DemoOrder
      */
     public function setAmount($amount)

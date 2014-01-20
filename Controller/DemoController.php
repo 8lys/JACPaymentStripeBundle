@@ -82,6 +82,7 @@ class DemoController extends Controller
             $result = $this->ppc->approve($payment->getId(), $payment->getTargetAmount());
         } catch (\Exception $e) {
             var_dump($e);
+            exit();
         }
 
         // payment was successful, do something interesting with the order
